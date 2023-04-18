@@ -31,10 +31,8 @@ module.exports = {
       backgroundImage: {
         heroTemp: "url('/images/slider/guy.png')",
       },
-      colors: {
-      },
-      fontFamily: {
-      },
+      colors: {},
+      fontFamily: {},
     },
   },
   plugins: [

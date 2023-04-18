@@ -1,12 +1,11 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useCurrentUser } from '../src/hooks/auth/useCurrentUser';
 import { NextPage } from 'next';
 import { withLayout } from '@/layout/Layout';
 
 const Home: NextPage = () => {
-    const { user: currentUser } = useCurrentUser();
+  const { user: currentUser } = useCurrentUser();
   return (
     <div className="">
       <Head>
@@ -15,43 +14,25 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className=''>
-        <p className=''>
-          {currentUser
-            ? `Hello`
-            : 'You are not logged in !'}
-        </p>
-
-        <div className=''>
-          <Link href="/about" className=''>
+      <main className="">
+        <p className="">{currentUser ? `Hello` : 'You are not logged in !'}</p>
+        <div className="">
+          <Link href="/about" className="">
             <h2>About Page &rarr;</h2>
             <p>This is a public route for every user!</p>
           </Link>
 
-          <Link href="/login" className=''>
+          <Link href="/login" className="">
             <h2>Login Page &rarr;</h2>
             <p>This is a private route for unauthenticated user!</p>
           </Link>
 
-          <Link href="/taskmanager" className=''>
+          <Link href="/taskmanager" className="">
             <h2>Taskmanager Page &rarr;</h2>
             <p>This is a private route for authenticated user!</p>
           </Link>
         </div>
       </main>
-
-      <footer className=''>
-        <Link
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className=''>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </Link>
-      </footer>
     </div>
   );
 };
