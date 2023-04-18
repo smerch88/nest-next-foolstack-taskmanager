@@ -33,6 +33,6 @@ export class AuthService {
         return {
           status: res.status,
         };
-      }) 
+      });
   };
 }

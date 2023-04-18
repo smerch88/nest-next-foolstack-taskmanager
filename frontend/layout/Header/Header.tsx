@@ -38,8 +38,8 @@ export const Header = ({ ...props }: HeaderProps): JSX.Element => {
           >
             Logout
           </button>
-        ):(
-         <div>
+        ) : (
+          <div>
             <button
               onClick={() => {
                 router.push('/login');
@@ -56,9 +56,8 @@ export const Header = ({ ...props }: HeaderProps): JSX.Element => {
             >
               Register
             </button>
-         </div>
-        )
-        }
+          </div>
+        )}
       </div>
     </header>
   );
