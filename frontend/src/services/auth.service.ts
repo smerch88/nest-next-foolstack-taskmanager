@@ -22,4 +22,17 @@ export class AuthService {
         };
       });
   };
+
+  register = (username: string, password: string) => {
+    return this.instance
+      .post('/auth/signup', {
+        username,
+        password,
+      })
+      .then(res => {
+        return {
+          status: res.status,
+        };
+      }) 
+  };
 }
