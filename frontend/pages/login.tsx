@@ -1,50 +1,48 @@
-import { NextPage } from 'next';
-import { withLayout } from '@/layout/Layout';
-import { loginAdmin } from '@/services/api';
-import { useState } from 'react';
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { useLogin } from "../src/hooks/auth/useLogin";
 
-const LoginPage: NextPage = () => {
-  const [login, setLogin] = useState('smerch');
-  const [password, setPassword] = useState('123456aA');
-
-  const handleLoginChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLogin(event.target.value);
-  };
-
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(login);
-    console.log(password);
-    loginAdmin({ username: login, password: password });
-    // Here you can make an API request to log the user in
+export default function Login() {
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const { login } = useLogin();
+  const router = useRouter();
+  const onSubmit = () => {
+    if (!name || !password) {
+      alert("Please enter information");
+    } else {
+      login(name, password)
+        .then((res) => router.push("/taskmanager"))
+        .catch((e) => alert(e));
+    }
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          login:
-          <input type="login" value={login} onChange={handleLoginChange} />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </label>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
+    <div className="w-screen h-screen flex items-center justify-center">
+      <div className="h-fit flex flex-col gap-2">
+        <p className="text-2xl font-bold">Login Form</p>
+        <label>Username</label>
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-80 h-8 px-2 border border-solid border-black rounded"
+          placeholder="username"
+        />
+        <label className="mt-4">Password</label>
+        <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-80 h-8 px-2 border border-solid border-black rounded"
+          placeholder="password"
+          type="password"
+        />
+        <button
+          onClick={onSubmit}
+          className="h-10 w-80 mt-8 bg-black rounded text-white"
+        >
+          Login
+        </button>
+      </div>
     </div>
   );
-};
-
-export default withLayout(LoginPage);
+}
