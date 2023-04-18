@@ -39,14 +39,24 @@ export const Header = ({ ...props }: HeaderProps): JSX.Element => {
             Logout
           </button>
         ):(
-          <button
-            onClick={() => {
-              router.push('/login');
-            }}
-            className="mt-2 cursor-pointer rounded border border-solid border-black px-4 py-2"
-          >
-            LogIn
-          </button>
+         <div>
+            <button
+              onClick={() => {
+                router.push('/login');
+              }}
+              className="mt-2 cursor-pointer rounded border border-solid border-black px-4 py-2"
+            >
+              LogIn
+            </button>
+            <button
+              onClick={() => {
+                router.push('/register');
+              }}
+              className="mt-2 cursor-pointer rounded border border-solid border-black px-4 py-2"
+            >
+              Register
+            </button>
+         </div>
         )
         }
       </div>
