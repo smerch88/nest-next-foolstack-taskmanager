@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import { useCurrentUser } from '../src/hooks/auth/useCurrentUser';
 import { NextPage } from 'next';
 import { withLayout } from '@/layout/Layout';
@@ -16,22 +15,6 @@ const Home: NextPage = () => {
 
       <main className="">
         <p className="">{currentUser ? `Hello` : 'You are not logged in !'}</p>
-        <div className="">
-          <Link href="/about" className="">
-            <h2>About Page &rarr;</h2>
-            <p>This is a public route for every user!</p>
-          </Link>
-
-          <Link href="/login" className="">
-            <h2>Login Page &rarr;</h2>
-            <p>This is a private route for unauthenticated user!</p>
-          </Link>
-
-          <Link href="/taskmanager" className="">
-            <h2>Taskmanager Page &rarr;</h2>
-            <p>This is a private route for authenticated user!</p>
-          </Link>
-        </div>
       </main>
     </div>
   );
